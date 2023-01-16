@@ -5083,11 +5083,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Kotzilla\\source\\repos\\TelegramBot\\TelegramBot.csproj",
+      "projectUniqueName": "C:\\Users\\Kotzilla\\Desktop\\TelegramBot\\TelegramBot.csproj",
       "projectName": "TelegramBot",
-      "projectPath": "C:\\Users\\Kotzilla\\source\\repos\\TelegramBot\\TelegramBot.csproj",
+      "projectPath": "C:\\Users\\Kotzilla\\Desktop\\TelegramBot\\TelegramBot.csproj",
       "packagesPath": "C:\\Users\\Kotzilla\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Kotzilla\\source\\repos\\TelegramBot\\obj\\",
+      "outputPath": "C:\\Users\\Kotzilla\\Desktop\\TelegramBot\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Kotzilla\\AppData\\Roaming\\NuGet\\NuGet.Config",

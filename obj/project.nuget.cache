@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MQ/5ym6ruW3A5kuBOTQlV/5aLAnCvBDQ3/Y9VTmwWvT5FA2h/0ALDFpUK5OuUsrPDYq5K95rtEvv1HcFRdXGvA==",
+  "dgSpecHash": "DP3ibzCaj8EumFMkdCuBaJT5cqxcrbyqYbJJpbo2iwrriH65JQJerWl+9hL+acCxvC3MpfyE1y0cBZoU1Uss9w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Kotzilla\\source\\repos\\TelegramBot\\TelegramBot.csproj",
+  "projectFilePath": "C:\\Users\\Kotzilla\\Desktop\\TelegramBot\\TelegramBot.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Kotzilla\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Kotzilla\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

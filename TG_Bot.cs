@@ -1,29 +1,20 @@
-﻿using System.Threading;
-using Telegram.Bot;
+﻿using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 using TelegramBot.Models;
 using System.Text.RegularExpressions;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Telegram.Bot.Extensions.LoginWidget;
 using TelegramBot.Models.DbSets;
-using MySqlX.XDevAPI.Common;
-using System.Drawing;
-using static Azure.Core.HttpHeader;
 using TelegramBot.Enums;
 using ConsoleApp1;
-using Org.BouncyCastle.Utilities;
 
 namespace TelegramBot
 {
     public class TG_Bot
     {
         static string TELEGRAM_TOKEN = "5952579553:AAGpMn-35VMV1zJcSSfejzmIHnGrIwto5hg";
-        private ITelegramBotClient botClient;
-        
+              
 
         public  TG_Bot()
         {
@@ -62,7 +53,7 @@ namespace TelegramBot
                 await HandleCallbackQuery(botClient, update.CallbackQuery);
             }
         }
-        async Task HandleCallbackQuery(ITelegramBotClient botClient, CallbackQuery c)
+        static async Task HandleCallbackQuery(ITelegramBotClient botClient, CallbackQuery c)
         {
 
             var action = (c.Data) switch
@@ -202,7 +193,7 @@ namespace TelegramBot
             }
             static async Task<Message> SetSizeInfo(ITelegramBotClient botClient, CallbackQuery c, string size, TypeOfClothesEnum typeOfClothesEnum)
             {
-                using (BotContext db = new BotContext())
+                using (BotContext db = new())
                 {
                     var g = db.Clients.FirstOrDefault(g => g.TelegramId == c.From.Id);
                     var x = db.ClientSizeInfo.FirstOrDefault(x => x.ClientId == g.Id);
@@ -242,7 +233,7 @@ namespace TelegramBot
                     var currentItemType = Enum.GetName(typeof(TypeOfClothesEnum), typeOfClothesEnum);
                     IEnumerable<Item> items;
 
-                    using (BotContext db = new BotContext())
+                    using (BotContext db = new ())
                     {
                         items = db.Items.Where(x => x.Type == currentItemType).ToList();
 
@@ -271,7 +262,7 @@ namespace TelegramBot
                 var currentItemType = Enum.GetName(typeof(TypeOfClothesEnum), typeOfClothesEnum);
                 IEnumerable<Item> items;
 
-                using (BotContext db = new BotContext())
+                using (BotContext db = new())
                 {
                     items = db.Items.Where(x => (x.Type == currentItemType) & (x.CreationDate > newColletion)).ToList();
 
@@ -303,7 +294,7 @@ namespace TelegramBot
                 Client currentClient;
                 ClientSizeInfo clientSizeInfo;
 
-                using (BotContext db = new BotContext())
+                using (BotContext db = new())
                 {
                     currentClient = db.Clients.FirstOrDefault(x => x.TelegramId == c.From.Id);
                     clientSizeInfo = db.ClientSizeInfo.FirstOrDefault(x => x.ClientId == currentClient.Id);
@@ -339,7 +330,7 @@ namespace TelegramBot
                   
 
         }
-        async Task HandleMessage(ITelegramBotClient botClient, Message message, CancellationToken cancellationToken)
+        static async Task HandleMessage(ITelegramBotClient botClient, Message message, CancellationToken cancellationToken)
         {
             if (message.ReplyToMessage != null)
             {
@@ -444,7 +435,7 @@ namespace TelegramBot
             static async Task<Message> MyAccountHandler(ITelegramBotClient botClient, Message message)
             {
                 object registredClient;
-                using (BotContext db = new BotContext())
+                using (BotContext db = new())
                 {
                     registredClient = db.Clients.FirstOrDefault(x => x.TelegramId == message.From.Id);
                     
@@ -558,7 +549,7 @@ namespace TelegramBot
             static async Task<Message> MyStockHandler(ITelegramBotClient botClient, Message message)
             {
                 object registredClient;
-                using (BotContext db = new BotContext())
+                using (BotContext db = new())
                 {
                     registredClient = db.Clients.FirstOrDefault(x => x.TelegramId == message.From.Id);
                 }
@@ -626,9 +617,9 @@ namespace TelegramBot
             {
                 if (Regex.IsMatch(message.Text, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
                 {
-                    await using (BotContext db = new BotContext())
+                    await using (BotContext db = new())
                     {
-                        Client client = new Client()
+                        Client client = new ()
                         {
                             Email = message.Text,
                             TelegramId = message.From.Id,
@@ -663,7 +654,7 @@ namespace TelegramBot
             }           
             static async Task<Message> PhoneRegistrationHandler(ITelegramBotClient botClient, Message message)
             {
-                await using (BotContext db = new BotContext())
+                await using (BotContext db = new())
                 {
                     Client x = db.Clients.FirstOrDefault(x => x.TelegramId == message.From.Id);
                     x.Phone = message.Text;
@@ -712,7 +703,7 @@ namespace TelegramBot
 
                     case TypeOFEmailEnum.Complaint:
                         Client client;                       
-                        using (BotContext db = new BotContext())
+                        using (BotContext db = new())
                         {
                             client = db.Clients.FirstOrDefault(g => g.TelegramId == message.From.Id);                                              
 
